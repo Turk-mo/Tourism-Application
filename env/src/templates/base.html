@@ -1,0 +1,29 @@
+{% load lookup_form %}
+<!Doctype html>
+<html lang="en">
+<head>
+   
+
+
+    <title>{% block title %} Ixperience {% endblock title %}</title>
+    {% include 'default/head.html' %}
+</head>
+
+
+<body>
+
+    <div class='container-fluid'>
+     {% include 'default/navbar_header.html' %}
+     {% if messages %}
+        {% for messages in messages %}
+            <div class="alert alert-{{ message.tags }}"> {{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+    </div>
+
+    {% include 'default/scripts.html'%}
+    
+</body>
+</html>

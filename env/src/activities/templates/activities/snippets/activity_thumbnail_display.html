@@ -1,0 +1,33 @@
+
+
+
+
+<div class="img-thumbnail">
+            {% if activity.image_thumbanil %}
+        <a href="{{ activity.get_absolute_url }}"><img src="{{ activity.image_thumbanil.url }}" class='img-responsive' >
+<!-- image stylization 
+style='width:200px; height: px; overflow: hidden;'
+style='width:200px; height: px; overflow: hidden;'
+-->
+            {% endif %}
+
+        <div class="caption" >
+            <h5 align="center">{{activity.title}}</h5>
+            
+        </a>
+        {% if activity.city %}
+        <font color="green"><p align="center">{{ activity.city }}</p></font>
+                
+                {% comment %} <p>{{ activity.overview|truncatechars:30}} </p> {% endcomment %}
+        {% endif %}
+        <p> <hr>
+        {% if obj.is_author %}        
+           <font color="grey"><p align="center">Registered</p></font>
+        {% else %}
+         <a href='{{ obj.get_obtain_url }}' class="btn btn-primary btn-block "> Tip & Follow {{ obj.display_charge_per_event}}</a> <br>               
+        {% endif %}
+        <br>
+        <a href="{{ activity.get_absolute_url }}" class="btn btn-success btn-block" role="button">View</a>
+        </p>
+    </div>
+</div>

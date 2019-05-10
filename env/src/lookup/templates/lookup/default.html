@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+{% load lookup_form %}
+
+
+
+{% block content %}
+
+<div class='row'>
+<div class='col-sm-4 col-sm-offset-4'>
+    <h2>Search</h2>
+   {% lookup_form request False %}
+</div>
+</div>
+{% if request.GET.q %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>Results {{ request.GET.q }}  </h1>
+
+{% for obj in qs %}
+    <a href='{{ obj.get_absolute_url }}'>{{ obj.id }} - {{ obj.title }}</a><br>
+{% endfor %}
+
+{% for obj in g_qs %}
+    <a href='{{ obj.get_absolute_url }}'>{{ obj.id }} - {{ obj.title }} </a> Genre<br>
+{% endfor %}
+
+{% for obj in e_qs %}
+    <a href='{{ obj.get_absolute_url }}'>{{ obj.id }} - {{ obj.title }}  </a> Event<br>
+{% endfor %}
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}

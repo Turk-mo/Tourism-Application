@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load render_load_video %}
+
+{% block content %}
+<head> 
+<style>
+style .dark-font .breadcrumb-item + .breadcrumb-item::before {
+color: #000; }
+.dark-font .breadcrumb-item.active {
+color: #455a64; }
+</style> 
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb purple lighten-4">
+    <li class="breadcrumb-item"><a class="black-text" href="{% url 'categories:list' %}">categories</a></li>
+    <li class="breadcrumb-item"><a class="black-text" href="{{ object.genre.get_absolute_url }}">{{ object.activity.title}}</a></li>
+    <li class="breadcrumb-item active">{{object.title}}  </li>
+  </ol>
+</nav>
+</head>
+    <div class="container-fluid">
+    <div class = 'row'>
+        <div class='col-sm-12'>
+            <h1> {{ object.title }} {% if activities.count > 1 %} <small>{{ activities.count}} Activities 
+            </small>{% endif %}</h1>
+            <div class='col-sm-6 col-sm-offset-6'>
+            {% render_load_video object.video %}
+        </div>
+    </div>
+
+ <!-- Featured Genres --> 
+        <div class='row'>
+         {% for obj in featured_activities  %}
+            <div class='col-sm-3'>
+            {% include 'activities/snippets/activity_featured.html' with activity=obj %}
+            </div>
+         {% endfor %}
+        </div>
+
+        <br>
+        <br>
+
+
+
+ <!-- Primary Genres --> 
+        <div class='row'>
+         {% for obj in activities  %}
+            <div class='col-sm-4 col-sm-4'>
+            {% include 'activities/snippets/activity_thumbnail_display.html' with activity=obj %}
+            </div>
+            {% cycle '' '' '</div><div class="row">' %}
+         {% endfor %}
+        </div>
+
+
+<!-- Secondary Genre 
+        <div class='row'>
+         {% for obj in object.secondary_genre.all %}
+                <div class='col-sm-4'>
+                {% include 'activities/snippets/activity_thumbnail_display.html' with activity=obj %}
+                </div>
+                {% cycle '' '' '</div></div><div class="row"><div class="col-sm-4">' %}
+            {% endfor %} 
+        </div>
+        --> 
+            
+
+
+<!-- 
+            {{ object.primary_genre.all }}
+            {{ object.secondary_genre.all }}
+-->
+    </div>
+   </div>
+{% endblock%}

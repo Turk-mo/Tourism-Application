@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+   
+
+
+
+  
+            {% comment %} <h3>Hello, {{ name }}!</h3> {% endcomment %}
+        {% if request.user.is_authenticated %}
+
+        <small> Logged as {{ user }} </small>
+        {% endif %}
+        <br>
+<br>
+
+
+ <div class='row'>
+ <div class='col-sm-2'>
+ <h1>Recommended</h1>
+
+ </div>
+ <body>
+ <br>
+ <br>
+ <br>
+ <br/>
+      {% for obj in rec_activities  %}
+          
+            <div class='col-sm-2'>
+            {% include 'activities/snippets/activity_featured.html' with activity=obj %}
+            </div>
+           {% if forloop.counter|divisibleby:10 %}
+            
+          
+          {% endif %}
+      {% endfor %}
+<div class='col-sm-12'><hr/>
+</div>
+
+</div>
+
+
+
+         <div class='row'>
+         {% for obj in qs  %}
+            <div class='col-md-2'>
+            {% include 'activities/snippets/activity_thumbnail_display.html' with activity=obj %}
+            </div>
+            <!-- {% cycle '' '' '</div><div class="row">' %} -->
+         {% endfor %}
+        </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</div>
+</html>
+{% endblock content %}

@@ -1,0 +1,4 @@
+{% load crispy_forms_tags %}
+<form method='GET' action="{% url 'posts:list' %}" >
+    <input type="text" placeholder="Search .. " name="q" value= "{{ request.GET.q }}">
+</form>

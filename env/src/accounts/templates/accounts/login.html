@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <div class='container'>
+    <div class="content-selction">
+    
+    <form action="" method="POST">
+            {%csrf_token%}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Login</legend>
+                    {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+            <button class ="btn btn-danger center" type="submit">Login</button>
+            </div>
+    </form>
+        <div class="border-top pt-4">
+            <small class="text-muted">Need an account??<a class="ml-2" href="{% url 'register' %}">Sign in</small>
+        </div>
+        </div>
+    
+    </div>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Posts | {{ block.super }} {% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class='row'>
+<div class='container'>
+<div class="d-flex justify-content-center">
+    <div class='col-sm-8 col-sm-offset-2'>
+{% include 'posts/snippets/post-search-form.html' with request=request %}
+<h1> Hello {{user}}</h1>
+
+
+    {{object.title}}<br>
+    {{object.embed_link | safe }}<br> <!-- safe is to get the video instead of link -->
+    <hr>
+    {{object.latest_update}}<br>
+    {{object.id}}
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}

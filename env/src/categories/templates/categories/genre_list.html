@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div class="container">
+    <div class = 'row'>
+        <div class='col-sm-10'>
+            <h1> Genres</h1>
+        </div>
+        <div class='col-md-12'>
+        <div class="list-group">
+        
+        {% for obj in object_list %}
+            <a href="{{ obj.get_absolute_url }}" class="list-group-item list-group-item">
+            {{ obj.title }}
+
+            {% if obj.activities_length > 0 %}
+            <span class="badge badge-info">
+            {{ obj.activities_length  }} Match {% if activities_length > 1 %} es 
+            {% endif %} </span>
+
+            {% endif %}
+
+            {% if obj.primary_genre.all.exists %}
+            <span class="badge badge-info">
+            {{ obj.primary_genre.all.count }} Featured {% if obj.primary_genre.all.count > 1 %} es 
+            {% endif %} </span>
+
+            {% endif %}
+        </a>
+            {% if forloop.counter|divisibleby:25 %}
+            
+            </div></div><div class="col-sm-3"><div class="list-group">
+        
+            {% endif %}
+        {% endfor %} 
+       
+      <!--   
+        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+        -->
+        
+        </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock%}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} Activities | {{ block.super }} {% endblock title %}
+
+
+{% block content %}
+    <div class='row'>
+    <div class='col-sm-8 col-sm-offset-3'>
+{% include 'posts/snippets/post-search-form.html' with request=request %}
+    <div class='row'>
+    <h1>Please Purchase To continue</h1>
+    <div class='col-sm-6'>
+
+    <h1> {{object.title}}</h1>
+    
+    {{object.overview|linebreaks}}<br> <!-- safe is to get the video instead of link -->
+
+
+{% if not object.is_author %} <!-- remove this if you want to show the price on the activity page when clicked on. -->
+        <a input type='submit' value='Save' class='btn btn-danger'  href='{{ object.get_obtain_url }}'>  Register {{ object.display_charge_per_event }} </a>
+       
+                <!-- {{object.latest_update}}<br>
+                (item #{{object.id}}) -->
+        
+{% endif %} <!-- remove this if you want to show the price on the activity page when clicked on. -->
+</div>
+</div>
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Activities | {{ block.super }} {% endblock title %}
+
+
+{% block content %}
+
+
+
+<head> 
+<style>
+style .dark-font .breadcrumb-item + .breadcrumb-item::before {
+color: #000; }
+.dark-font .breadcrumb-item.active {
+color: #455a64; }
+</style> 
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb purple lighten-4">
+    <li class="breadcrumb-item"><a class="black-text" href="{% url 'activities:list' %}">Activities</a></li>
+    <li class="breadcrumb-item"><a class="black-text" href="{{ object.activity.get_absolute_url }}">{{ object.activity.title}}</a></li>
+    <li class="breadcrumb-item active">{{object.title}}  </li>
+  </ol>
+</nav>
+</head>
+<div class="container-fluid">
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+<h1 align="center"> Welcome to {{object.title}} </h1> <p class="text-success" align="center">This event is under the category <a class="black-text" href="{{ object.activity.get_absolute_url }}">{{ object.activity.title }}</a></p>
+
+<hr>
+
+    <br>
+    <div align="center"> {{object.post.embed_link | safe }}<br></div> <!-- safe is to get the video instead of link && you can do the same thing for the picture-->
+    <h6 align="center"> {{object.latest_update}} <small>edited</small> </h6>
+    <br>
+    <h4 align="center">{{ object.overview }}</h4><br>
+    <!-- {{object.id}} -->
+    </div>
+</div>
+</div>
+{% endblock content %}

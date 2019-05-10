@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} Activities | {{ block.super }} {% endblock title %}
+
+{% if is_paginated %}
+
+
+{% endif %}
+
+
+{% if forloop.counter|divisibleby:3%}
+                </div></div><div class="row"><div class="col-sm-4">
+            {%endif%}
+
+{% block content %}
+<div class='container'>
+{% comment %} <div class='content-section> {% endcomment %}
+<div class='row'>
+    <div class='col-sm-10'>
+        <h1> Activities </h1>
+
+
+    {% if request.GET.q %}
+        <p>You searched for <b> {{ request.GET.q}}</p>
+    {% endif %}
+
+        <div class='row'>
+            {% for obj in object_list %}
+                <div class='col-md-4 sm-12'>
+                {% include 'activities/snippets/activity_thumbnail_display.html' with activity=obj %}
+                </div>
+                   
+            {% if forloop.counter|divisibleby:3 %}
+                    </div><div class="row">
+                {% endif %}
+
+                {% empty %}
+                 <p class='lead'>No item found </p>
+                {% endfor %}  
+                    </div>
+<!-- Pagination -->
+ <nav aria-label="Page navigation">
+  <ul class="pagination">
+        {% if page_obj.has_previous %}
+        {% if page_obj.previous_page_number > 1 %}
+           <li> <a href='{% url "activities:list" %}?page=1'><span aria-hidden="true">&laquo;</span></a></li>
+        {% endif %}
+
+        <li><a href='{% url "activities:list" %}?page={{ page_obj.previous_page_number }}'> < </a></li>
+
+        {% if page_obj.previous_page_number > 1 %}
+         <li><a href='{% url "activities:list" %}?page={{ page_obj.previous_page_number }}'>{{ page_obj.previous_page_number }}</a></li>
+         {% endif %}
+
+
+    {% endif %}
+<!-- end pagination -->
+
+     <li class='active'><a href='#'>{{ page_obj.number }}</a></li>
+    {% if page_obj.has_next %}
+            {% if page_obj.paginator.num_pages > page_obj.next_page_number %}
+            <li><a href='{% url "activities:list" %}?page={{ page_obj.next_page_number }}'>{{ page_obj.next_page_number }}</a></li>
+            {% endif %}
+           <li><a href='{% url "activities:list" %}?page={{ page_obj.next_page_number }}'> > </a></li>
+
+           {% if page_obj.paginator.num_pages > page_obj.next_page_number %}
+            <li> <a href='{% url "activities:list" %}?page={{ page_obj.paginator.num_pages }}'><span aria-hidden="true">&raquo;</span></a></li>
+            {% endif %}
+    {% endif %}
+  </ul>
+</nav>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

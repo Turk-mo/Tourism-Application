@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Activities | {{ block.super }} {% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+<h1> Think of something interesting, {{user}}</h1>
+<!--
+    {{object.title}}<br>
+    {{object.embed_link | safe }}<br>  safe is to get the video instead of link 
+    {{object.latest_update}}<br>
+    {{object.id}}
+-->
+    <form method='post' action=''>{% csrf_token %}
+        {{ form|crispy }} <!-- to render form as paragraph -->
+        <input type='submit' value='Save' class='btn btn-default' />
+    </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Posts | {{ block.super }} {% endblock title %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class='container'>
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
+<h1> Hello {{user}}</h1>
+<!--
+    {{object.title}}<br>
+    {{object.embed_link | safe }}<br>  safe is to get the video instead of link 
+    {{object.latest_update}}<br>
+    {{object.id}}
+-->
+    <form method='post' action=''>{% csrf_token %}
+        {{form|crispy }}{% comment %} {{ form.as_p}} <!-- to render form as paragraph --> {% endcomment %}
+        <input type='submit' value='Save' class='btn btn-default' />
+    </form>
+    </div>
+</div>
+</div>
+{% endblock content %}

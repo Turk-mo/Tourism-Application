@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Posts | {{ block.super }} {% endblock title %}
+{% block content %}
+<div class='row'>
+    <div class='col-sm-8 col-sm-offset-2'>
+<h1> Hello {{user}}</h1>
+<!--
+    {{object.title}}<br>
+    {{object.embed_link | safe }}<br>  safe is to get the video instead of link 
+    {{object.latest_update}}<br>
+    {{object.id}}
+-->
+    <form method='post' action=''>{% csrf_token %}
+        <p> Are you sure you want to delete <b>{{ object.title }}?</b></p>
+        <input type='submit' value='Confirm' class='btn btn-default' />
+        <a href="{{ object.get_absoulte_url }}">Cancel</a> <!-- this url is not working, fix it -->
+    </form>
+    </div>
+</div>
+{% endblock content %}

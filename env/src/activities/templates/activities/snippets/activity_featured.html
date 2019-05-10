@@ -1,0 +1,37 @@
+
+
+
+
+<div class="img-thumbnail">
+            {% if activity.image_thumbanil %}
+        <a href="{{ activity.get_absolute_url }}"><img src="{{ activity.image_thumbanil.url }}" 
+        class='img-responsive' >
+<!-- image stylization 
+style='width:200px; height: px; overflow: hidden;'
+style='width:200px; height: px; overflow: hidden;'
+-->
+            {% endif %}
+
+        <div class="caption" >
+
+            <h3>{{activity.title}}</h3>
+        
+    <!-- TO SHOW THE OVERVIEW   {% if activity.overview %}
+
+                <p>{{ activity.overview|truncatechars:90}} </p> {% endif %} -->
+        
+        <p>
+
+
+        {% if not obj.is_author %} 
+
+
+         <a href='{{ obj.get_obtain_url }}' class="btn btn-success"> Register {{ obj.display_charge_per_event}}</a> <br>
+        {% else%}   
+        <a href="{{ activity.get_absolute_url }}" class="btn btn-primary" role="button">View</a>
+        {% endif %}
+        <br>
+        
+        </p>
+    </div>
+</div>

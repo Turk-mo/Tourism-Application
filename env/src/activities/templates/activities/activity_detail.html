@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} Activities | {{ block.super }} {% endblock title %}
+
+
+{% block content %}
+ <nav aria-label="breadcrumb">
+  <ol class="breadcrumb purple lighten-4">
+    <li class="breadcrumb-item"><a class="black-text" href="{% url 'activities:list' %}">Activities</a></li>
+    <li class="breadcrumb-item active">{{object.title}}  </li>
+  </ol>
+</nav>
+    <div class='row'>
+    <div class='col-sm-8 col-sm-offset-3'>
+
+    <div class='row'>
+    <div class='col-sm-6'>
+{% if object.image_thumbanil %}
+    <img src='{{ object.image_thumbanil.url }}' class='img-responsive'>
+{% endif %}
+
+    <h1 align="center"> {{object.title}}</h1>
+    
+   <p align="center"> {{object.overview|linebreaks}}</p><br> <!-- safe is to get the video instead of link -->
+
+
+{% if not object.is_author %} <!-- remove this if you want to show the price on the activity page when clicked on. -->
+        <a href='{{ object.get_obtain_url }}'> Obtain</a>
+                <!-- {{object.latest_update}}<br>
+                (item #{{object.id}}) -->
+        {{ object.display_charge_per_event }} 
+{% endif %} <!-- remove this if you want to show the price on the activity page when clicked on. -->
+
+    </div>
+    </div>
+   
+   <div class='row'>
+   <div class='col-sm-6'>
+   <h3> Events </h3>
+    {% for obj in object.event_set.all %}
+        <div class="list-group">
+                <a class="list-group-item lead"  href='{{ obj.get_absolute_url }}' >{{ obj.title }} {% if obj.basic %}<small> Free Activity </small>{% endif %}</a>
+    {% empty %}
+        <p class='lead' >No events recorded</p>
+         </div>
+    {% endfor %}
+    </div>
+    </div>
+
+
+    </div>
+</div>
+{% endblock content %}
