@@ -4,7 +4,7 @@ Ixperience Roadmap
 
 
 1. Activity Posts
-    - List, View, Create, Delete  => Expert Permissions
+    - List, View, Create, Delete  =>
     - Viewers (Travellers) Permissions:
         - Membership, Owner, Etc..
     - CRUD
@@ -24,7 +24,7 @@ Ixperience Roadmap
     - Add activity
     - Featured 
 
-4. Search
+4. Lookups
 
-5. Analytics
+5. Recommendations
     - Recommendations based on users && habits 
